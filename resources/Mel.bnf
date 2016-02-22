@@ -1,0 +1,23 @@
+{
+  parserClass="com.krupa.adrian.mel.parser.MelParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Mel"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.krupa.adrian.mel.psi"
+  psiImplPackage="com.krupa.adrian.mel.psi.impl"
+
+  elementTypeHolderClass="com.krupa.adrian.mel.psi.MelTypes"
+  elementTypeClass="com.krupa.adrian.mel.psi.MelElementType"
+  tokenTypeClass="com.krupa.adrian.mel.psi.MelTokenType"
+
+  psiImplUtilClass="com.krupa.adrian.mel.psi.impl.MelPsiImplUtil"
+}
+
+File ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY {mixin="com.krupa.adrian.mel.psi.impl.MelNamedElementImpl"
+  implements="com.krupa.adrian.mel.psi.MelNamedElement" methods=[getKey getValue getName setName getNameIdentifier getPresentation]}
